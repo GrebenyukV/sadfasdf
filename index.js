@@ -11,16 +11,16 @@ const img_url = 'https://bittradegroup.com/wp-content/uploads/2018/08/logo_s-1-1
 var t_username = '';
 var u_email = '';
 var e_wallet = '';
-var t_mobileno='';
+
 
 bot.onText(/\/start/, (msg) => {
     bot.sendPhoto(msg.chat.id,img_url,{caption : "Welcome to BitTrade Group Airdrop!  \nJoin Era Swap Community on Telegram and earn 3 Era Swap Tokens\n \n "}).then(() => {
         var option = {
             "reply_markup": {
-                "keyboard": [["1. Join the Era Swap Telegram group", "2. Your Telegram Username", "3. Your Mobile Number"],   ["4. E-mail address" , "5. ETH address (No exchange wallet!)"]]
+                "keyboard": [["1. Join the Era Swap Telegram group", "2. Your Telegram Username"], ["3. E-mail address" , "4. ETH address (No exchange wallet!)"]]
                 }
         };
-        bot.sendMessage(msg.chat.id,"Airdrop Rules ⚔️⚔️\n 1. Join the Era Swap Telegram group \n 2. Your Telegram Username \n 3. Mobile Number \n 4. E-mail address \n 5. ETH address (No exchange wallet!) \n Visit https://eraswaptoken.io for more\n",option);
+        bot.sendMessage(msg.chat.id,"Airdrop Rules ⚔️⚔️\n 1. Join the Era Swap Telegram group \n 2. Your Telegram Username \n 3. E-mail address \n 4. ETH address (No exchange wallet!) \n Visit https://eraswaptoken.io for more\n",option);
     })
 })
 bot.on('message', (msg) => {
@@ -86,31 +86,16 @@ bot.on('message', (msg) => {
         t_username = send_text;
                 var option = {
             "reply_markup": {
-                "keyboard": [["1. Join the Era Swap Telegram group", "2. Your Telegram Username", "3. Your Mobile Number"],   ["4. E-mail address" , "5. ETH address (No exchange wallet!)"]]
+                "keyboard": [["1. Join the Era Swap Telegram group", "2. Your Telegram Username"],   ["3. E-mail address" , "4. ETH address (No exchange wallet!)"]]
                 }
         };
         bot.sendMessage(msg.chat.id, "Hello "+send_text, option);
 
     }
 
-    var step3_text = '3. Your Mobile Number';
-    if (send_text.toString().indexOf(step3_text) === 0) {
-        bot.sendMessage(msg.chat.id, "Please Enter Your Mobile Number, please maintain the format for example for India it will be like +91XXXXXXXXXX");
-    }
-
-    if(send_text.length === 13) {
-        t_mobileno = send_text;
-                var option = {
-            "reply_markup": {
-                "keyboard": [["1. Join the Era Swap Telegram group", "2. Your Telegram Username", "3. Your Mobile Number"],   ["4. E-mail address" , "5. ETH address (No exchange wallet!)"]]
-                }
-        };
-        bot.sendMessage(msg.chat.id, "Your Number is "+send_text, option);
-
-    }
-
-    var step4_text = '4. E-mail address';
-    if(send_text.toString().indexOf(step4_text) === 0) {
+   
+    var step3_text = '3. E-mail address';
+    if(send_text.toString().indexOf(step3_text) === 0) {
         bot.sendMessage(msg.chat.id, "Enter your email address")
     }
     
@@ -121,14 +106,14 @@ bot.on('message', (msg) => {
         u_email = send_text;
         var option = {
             "reply_markup": {
-                "keyboard": [["1. Join the Era Swap Telegram group", "2. Your Telegram Username", "3. Your Mobile Number"],   ["4. E-mail address" , "5. ETH address (No exchange wallet!)"]]
+                "keyboard": [["1. Join the Era Swap Telegram group", "2. Your Telegram Username"],   ["3. E-mail address" , "4. ETH address (No exchange wallet!)"]]
                 }
         };
         bot.sendMessage(msg.chat.id, "Email address: "+send_text, option)
     }
     
-    var step5_text = '5. ETH address (No exchange wallet!)';
-    if(send_text.toString().indexOf(step5_text) === 0) {
+    var step4_text = '4. ETH address (No exchange wallet!)';
+    if(send_text.toString().indexOf(step4_text) === 0) {
         bot.sendMessage(msg.chat.id, "Make sure that you have an erc20 wallet (0x) 🔑");
     }
     var re_eth = /^0x[a-fA-F0-9]{40}$/g
@@ -152,7 +137,6 @@ bot.on('message', (msg) => {
                     db.child(e_wallet.toLocaleLowerCase()).update({
                         telegram_username: t_username,
                         email: u_email,
-                        mobilenumber: t_mobileno,
                         wallet: e_wallet.toLocaleLowerCase(),
                         status: 'pending',
                         createAt: Date.now()
