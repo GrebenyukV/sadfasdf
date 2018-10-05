@@ -1,5 +1,5 @@
 // telegram token
-var token = '651232728:AAFHWVODBx386mQrxb-tskl_j67Pk_YK6yU'
+var token = '677560237:AAGF7daE__X3yL-p_px-GM8-OSOM91szFmk'
 // firebase config
 var config = {
     apiKey: "AIzaSyDH6L91HrzJp3BFVrlNG-8_YpZdSCTLRdA",
