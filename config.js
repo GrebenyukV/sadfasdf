@@ -1,12 +1,12 @@
 // telegram token
-var token = '698720893:AAEMZra5GApM1zAbHD97pPpjgSdOgJ9PiG4'
+var token = '651232728:AAFHWVODBx386mQrxb-tskl_j67Pk_YK6yU'
 // firebase config
 var config = {
-    apiKey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    authDomain: "XXXXXXXXXXX.firebaseapp.com",
-    databaseURL: "https://XXXXXXXXX.firebaseio.com/",
-    projectId: "XXXXXXXX",
-    storageBucket: "XXXXXXXXXXXX.appspot.com",
+    apiKey: "AIzaSyDH6L91HrzJp3BFVrlNG-8_YpZdSCTLRdA",
+    authDomain: "telegrambot-1fe75.firebaseapp.com",
+    databaseURL: "https://telegrambot-1fe75.firebaseio.com",
+    projectId: "telegrambot-1fe75",
+    storageBucket: "telegrambot-1fe75.appspot.com",
 };
 
 exports.token = token;
