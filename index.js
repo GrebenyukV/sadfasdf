@@ -11,16 +11,29 @@ const img_url = 'https://bittradegroup.com/wp-content/uploads/2018/08/logo_s-1-1
 var t_username = '';
 var u_email = '';
 var e_wallet = '';
+var capthas = require('./captchas');
 
 
 bot.onText(/\/start/, (msg) => {
-    bot.sendPhoto(msg.chat.id,img_url,{caption : "Welcome to BitTrade Group Airdrop!  \nJoin Era Swap Community on Telegram and earn 3 Era Swap Tokens\n \n "}).then(() => {
-        var option = {
-            "reply_markup": {
-                "keyboard": [["1. Join the Era Swap Telegram group", "2. Your Telegram Username"], ["3. E-mail address" , "4. ETH address (No exchange wallet!)"]]
-                }
+    const captcha = capthas[3];
+    bot.sendMessage(msg.chat.id, `STOY SUKA. VVEDI ${captcha.label}`).then((msg) => {
+        if(msg.text === captcha.label){
+            bot.sendPhoto(msg.chat.id,img_url,{caption : "Welcome to BitTrade Group Airdrop!  \nJoin Era Swap Community on Telegram and earn 3 Era Swap Tokens\n \n "}).then(() => {
+                var option = {
+                    "reply_markup": {
+                        "keyboard": [["1. Join the Era Swap Telegram group", "2. Your Telegram Username"], ["3. E-mail address" , "4. ETH address (No exchange wallet!)"]]
+                        }
+                };
+                bot.sendMessage(msg.chat.id,"Airdrop Rules ⚔️⚔️\n 1. Join the Era Swap Telegram group \n 2. Your Telegram Username \n 3. E-mail address \n 4. ETH address (No exchange wallet!) \n Visit https://eraswaptoken.io for more\n",option);
+            })
+        } else {
+            var option = {
+                "reply_markup": {
+                    "keyboard": ['/start']
+                    }
+            };
+            bot.sendMessage(msg.chat.id, 'Please try again. Enter /start', option);
         };
-        bot.sendMessage(msg.chat.id,"Airdrop Rules ⚔️⚔️\n 1. Join the Era Swap Telegram group \n 2. Your Telegram Username \n 3. E-mail address \n 4. ETH address (No exchange wallet!) \n Visit https://eraswaptoken.io for more\n",option);
     })
 })
 bot.on('message', (msg) => {
@@ -131,7 +144,7 @@ bot.on('message', (msg) => {
     }
     var confirm = 'Yes ✅';
     if(send_text.toString().indexOf(confirm) === 0) {
-            var db = firebase.database().ref("telegrambot-1fe75");
+            var db = firebase.database().ref('/users');
             db.child(e_wallet.toLocaleLowerCase()).once('value', snap => {
                 if(!snap.exists()) {
                     db.child(e_wallet.toLocaleLowerCase()).update({
