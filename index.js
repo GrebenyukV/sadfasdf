@@ -145,7 +145,7 @@ bot.on('message', (msg) => {
     var confirm = 'Yes ✅';
     if(send_text.toString().indexOf(confirm) === 0) {
             var db = firebase.database().ref('/users');
-o            db.child(e_wallet.toLocaleLowerCase()).once('value', snap => {
+            db.child(e_wallet.toLocaleLowerCase()).once('value', snap => {
                 if(!snap.exists()) {
                     db.child(e_wallet.toLocaleLowerCase()).update({
                         telegram_username: t_username,
